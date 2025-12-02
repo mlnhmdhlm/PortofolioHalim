@@ -65,7 +65,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 300px;
+  width: 350px;
   transition: all ease-in-out 0.5s;
   z-index: 9997;
   transition: all 0.5s;
@@ -198,7 +198,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/FotoBackground2.jpg") top center;
   background-size: cover;
 }
 #hero:before {
@@ -292,6 +292,7 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
+/* ——— CSS Asli About ——— */
 .about .content h3 {
   font-weight: 700;
   font-size: 26px;
@@ -317,6 +318,29 @@ section {
 }
 .about .content p:last-child {
   margin-bottom: 0;
+}
+
+/* ——— CSS Tambahan untuk perbesar teks & isi space kosong ——— */
+.about .content h3 {
+  font-size: 32px;
+}
+
+.about .content p.fst-italic {
+  font-size: 20px;
+  margin-bottom: 50px;
+}
+
+.about .content ul li {
+  font-size: 20px;
+  margin-bottom: 50px;
+}
+
+.about .content {
+  padding-left: 30px;
+}
+
+.about {
+  padding-bottom: 40px;
 }
 
 /*--------------------------------------------------------------
@@ -592,6 +616,226 @@ section {
 .portfolio-details .portfolio-description p {
   padding: 0;
 }
+
+/* ===== Overrides / Enhancements for Portfolio & Modal ===== */
+
+/* Make thumbnails behave consistently */
+.portfolio .portfolio-wrap img,
+.pf-thumb {
+  display: block;
+  width: 100%;
+  height: 220px;              /* fixed visual area for thumbnails */
+  object-fit: cover;          /* crop to fill card consistently */
+  border-radius: 6px;         /* rounded corners to match cards */
+  border: 1px solid rgba(11,55,95,0.06); /* subtle border for neat look */
+  box-shadow: 0 6px 18px rgba(11,55,95,0.03);
+  background: #f6f8fa;        /* neutral background if image has transparency */
+}
+
+/* If you prefer thumbnails not cropped, change to object-fit: contain; and adjust background */
+/* .portfolio .portfolio-wrap img { object-fit: contain; background: #0b1220; } */
+
+/* Slight spacing inside portfolio-wrap so overlay doesn't cover rounded corners */
+.portfolio .portfolio-wrap {
+  border-radius: 8px;
+  overflow: hidden;
+  background-clip: padding-box;
+}
+
+/* Keep overlay translucent but not forcing layout changes */
+.portfolio .portfolio-wrap::before {
+  /* keep as-is but ensure it doesn't change item height */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.45);
+  opacity: 0;
+  transition: opacity .28s ease-in-out;
+  z-index: 2;
+  border-radius: inherit;
+}
+.portfolio .portfolio-wrap:hover::before { opacity: 1; }
+
+/* Card styling for pf-card (if used) */
+.pf-card {
+  background: #fff;
+  border: 1px solid rgba(11,55,95,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.pf-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(11,55,95,0.06); }
+
+/* Modal media area and image rules (prevents white strip below image) */
+.pf-modal {
+  display: none; /* toggled by JS */
+  position: fixed;
+  inset: 0;
+  background: rgba(6,13,24,0.68);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+.pf-modal-inner {
+  width: 100%;
+  max-width: 1100px;
+  max-height: calc(100vh - 48px);
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.pf-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 0;
+  align-items: start;
+  height: 100%;
+}
+
+/* Media column: center image and prevent whitespace */
+.pf-modal-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg,#0b1220,#0e1a2a);
+  padding: 18px;
+  overflow: auto;
+  min-height: 320px;
+}
+.pf-modal-media img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: calc(100vh - 220px); /* ensure it never forces modal too tall */
+  object-fit: contain;             /* keep whole image visible, no distortion */
+  border-radius: 8px;
+  border: 1px solid rgba(11,55,95,0.08);
+  box-shadow: 0 10px 30px rgba(3,15,30,0.18);
+  background: #0b1220;
+}
+
+/* Info column */
+.pf-modal-info {
+  padding: 28px;
+  overflow: auto;
+}
+
+/* Responsive behavior */
+@media (max-width: 980px) {
+  .pf-modal-grid { grid-template-columns: 1fr; }
+  .pf-modal-inner { max-width: 760px; }
+  .pf-modal-media { max-height: calc(100vh - 220px); }
+  .pf-modal-media img { max-height: calc(100vh - 300px); }
+}
+
+/* Small tweak: ensure portfolio links row doesn't overlap thumbnails on small screens */
+.portfolio .portfolio-wrap .portfolio-links {
+  bottom: 8px; /* slightly lifted so it doesn't hide image edges */
+}
+
+/* Optional: if you have small thumbnails that show white bars, switch .pf-thumb object-fit */
+/* To use contain instead of cover, uncomment below (and maybe set background dark): */
+/*
+.pf-thumb { object-fit: contain; background: #0b1220; height: 240px; }
+*/
+
+/* === Portfolio: place + button beside title & soft glow background === */
+
+/* ensure portfolio section is positioned for glow element */
+.portfolio.section-bg {
+  position: relative; /* already set, but ensure it's relative */
+  overflow: visible;
+}
+
+/* soft glow layer (subtle, decorative) */
+.portfolio .portfolio-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: -6% -2% auto -2%;
+  height: 48%;
+  z-index: 0;
+  background:
+    radial-gradient(40% 60% at 10% 20%, rgba(11,119,248,0.10), transparent 18%),
+    radial-gradient(30% 40% at 85% 65%, rgba(0,193,163,0.08), transparent 20%),
+    linear-gradient(180deg, rgba(255,255,255,0.00), rgba(255,255,255,0.00));
+  filter: blur(28px);
+  mix-blend-mode: screen;
+  opacity: 1;
+}
+
+/* pf-card must sit above glow */
+.pf-card { z-index: 1; position: relative; }
+
+/* pf-body: align title and plus horizontally */
+.pf-body {
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  background: #fff;
+}
+
+/* title takes remaining space and wraps nicely */
+.pf-body h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #083358;
+  font-weight: 600;
+  line-height: 1.15;
+  flex: 1 1 auto;
+  margin-right: 8px;
+  word-break: break-word;
+}
+
+/* plus button: fixed square to the right, vertically centered */
+.pf-plus {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 8px;
+  border: 1px solid rgba(11,55,95,0.08);
+  background: linear-gradient(180deg,#ffffff,#f3fbff);
+  color: #0b78f8;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .14s ease, box-shadow .14s ease, background .14s;
+  box-shadow: 0 6px 18px rgba(11,55,95,0.04);
+  flex-shrink: 0;
+}
+
+/* hover/focus states */
+.pf-plus:hover, .pf-plus:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(11,55,95,0.08);
+  background: linear-gradient(180deg,#e6f1ff,#eafcf6);
+  outline: none;
+}
+
+/* On very small screens: keep + to the right but slightly smaller */
+@media (max-width: 420px) {
+  .pf-body { gap: 8px; padding: 10px; }
+  .pf-body h4 { font-size: 15px; }
+  .pf-plus { width: 36px; height: 36px; font-size: 18px; border-radius: 6px; }
+}
+
+/* ensure the portfolio container's direct children sit above the glow */
+.portfolio .container, .portfolio .row { position: relative; z-index: 1; }
+
+/* Slight visual tweak so pf-thumb and card edges look tidy with glow */
+.pf-thumb { border-radius: 6px 6px 0 0; }
+
 
 /*--------------------------------------------------------------
 # Services
