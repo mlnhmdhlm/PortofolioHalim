@@ -1196,3 +1196,227 @@ section {
     padding-right: 20px 15px;
   }
 }
+
+/* Certificate gallery: clean, responsive presentation */
+.certificates .certificate-card { text-align: center; }
+.certificates .certificate-card a { display:block; background:#fff; padding:10px; border-radius:12px; box-shadow:0 8px 28px rgba(30,45,62,.09); transition:transform .25s ease, box-shadow .25s ease; }
+.certificates .certificate-card a:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(30,45,62,.16); }
+.certificates .certificate-card img { display:block; width:100%; height:240px; object-fit:contain; }
+.certificates .certificate-card h3 { font-size:15px; font-weight:600; margin:14px 4px 0; line-height:1.5; }
+@media(max-width:767px){ .certificates .certificate-card img { height:auto; max-height:280px; } }
+
+
+/* Compact About section */
+.about .about-highlights ul { list-style: none; padding: 0; margin: 0; }
+.about .about-highlights li { display: flex; align-items: flex-start; gap: 7px; margin: 0 0 14px; line-height: 1.55; }
+.about .about-highlights li i { color: #149ddd; flex: 0 0 auto; margin-top: 4px; }
+.about .about-highlights li a { overflow-wrap: anywhere; }
+@media (max-width: 767px) {
+  .about .about-highlights { margin-top: 12px; }
+  .about .about-highlights li { margin-bottom: 10px; }
+}
+
+
+/* ===== Technical Profile & Skill Orbit refresh ===== */
+.technical-profile .section-title { margin-bottom: 28px; }
+.technical-profile .section-title p { max-width: 900px; }
+.technical-profile-layout { row-gap: 34px; }
+.skill-orbit {
+  position: relative;
+  width: min(100%, 480px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.skill-orbit::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(20,157,221,.10) 0%, rgba(20,157,221,.035) 50%, transparent 72%);
+  z-index: -2;
+}
+.orbit-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.orbit-ring-outer { width: 79%; height: 79%; border: 1px dashed rgba(20,157,221,.38); }
+.orbit-ring-inner { width: 57%; height: 57%; border: 1px solid rgba(28,64,112,.10); }
+.orbit-center {
+  position: relative;
+  z-index: 2;
+  width: 43%;
+  aspect-ratio: 1 / 1;
+  padding: 7px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #e5edf5;
+  box-shadow: 0 16px 44px rgba(23, 54, 93, .18), 0 0 0 9px rgba(20,157,221,.07);
+}
+.orbit-center img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 36%; border-radius: 50%; }
+.orbit-badge {
+  position: absolute;
+  z-index: 3;
+  width: 88px;
+  height: 88px;
+  padding: 8px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  text-align: center;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #e1ebf5;
+  box-shadow: 0 8px 24px rgba(30, 45, 62, .10);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.orbit-badge i { display: block; color: #149ddd; font-size: 21px; line-height: 1; }
+.orbit-badge span { color: #243953; font-size: 11px; font-weight: 700; line-height: 1.2; }
+.orbit-badge:hover { border-color: #149ddd; box-shadow: 0 12px 28px rgba(20,157,221,.18); }
+.orbit-js { top: 1%; left: 50%; transform: translateX(-50%); }
+.orbit-js:hover, .orbit-express:hover { transform: translateX(-50%) translateY(-3px); }
+.orbit-react { top: 16%; right: 4%; }
+.orbit-html { top: 41%; right: 0; }
+.orbit-api { bottom: 16%; right: 4%; }
+.orbit-express { bottom: 1%; left: 50%; transform: translateX(-50%); }
+.orbit-ml { bottom: 16%; left: 4%; }
+.orbit-video { top: 41%; left: 0; }
+.orbit-vite { top: 16%; left: 4%; }
+.about .technical-profile-copy { padding-left: 24px; }
+.profile-eyebrow { display: inline-flex; align-items: center; gap: 8px; color: #149ddd; font-size: 11px; letter-spacing: 1.4px; font-weight: 800; margin-bottom: 13px; }
+.profile-eyebrow::before { content: ""; display: inline-block; width: 24px; height: 2px; background: #149ddd; }
+.about .technical-profile-copy h3 { color: #173f72; font-size: clamp(25px, 2.3vw, 34px); font-weight: 750; line-height: 1.22; margin: 0 0 15px; }
+.technical-profile-copy .profile-lead { color: #4e5a68; font-size: 15px; line-height: 1.8; margin-bottom: 25px; }
+.profile-highlight-list { display: grid; gap: 17px; }
+.profile-highlight { display: flex; align-items: flex-start; gap: 13px; }
+.profile-highlight-icon { flex: 0 0 42px; width: 42px; height: 42px; display: grid; place-items: center; color: #149ddd; background: #eaf7fd; border-radius: 13px; font-size: 20px; }
+.profile-highlight h4 { margin: 1px 0 4px; color: #243953; font-size: 15px; font-weight: 750; }
+.profile-highlight p { margin: 0; color: #5b6572; font-size: 13px; line-height: 1.65; }
+.profile-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 19px; margin-top: 25px; }
+.profile-action-link { display: inline-flex; align-items: center; gap: 8px; color: #149ddd; font-size: 13px; font-weight: 750; }
+.profile-action-link:hover { color: #0b6fa5; }
+.profile-action-secondary { color: #536479; }
+
+/* Skill categories replace subjective percentage bars */
+.technical-skills .section-title { margin-bottom: 30px; }
+.technical-skills .section-title p { max-width: 880px; }
+.toolkit-card {
+  height: 100%;
+  min-height: 245px;
+  padding: 27px 28px 25px;
+  border: 1px solid #e4ebf4;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 10px 32px rgba(26, 52, 82, .045);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.toolkit-card:hover { transform: translateY(-4px); border-color: rgba(20,157,221,.38); box-shadow: 0 16px 38px rgba(26, 52, 82, .09); }
+.toolkit-featured { border-top: 3px solid #149ddd; }
+.toolkit-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.toolkit-icon { flex: 0 0 47px; width: 47px; height: 47px; display: grid; place-items: center; border-radius: 14px; background: #eaf7fd; color: #149ddd; font-size: 23px; }
+.toolkit-kicker { color: #149ddd; font-size: 10px; line-height: 1.4; font-weight: 800; letter-spacing: 1.25px; text-align: right; }
+.toolkit-card h3 { color: #173f72; margin: 0 0 10px; font-size: 19px; font-weight: 750; }
+.toolkit-card p { margin: 0 0 18px; color: #5b6572; font-size: 13px; line-height: 1.75; }
+.toolkit-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.toolkit-tags span { display: inline-flex; align-items: center; background: #f0f5fb; color: #31465f; border: 1px solid #e4ebf4; border-radius: 7px; padding: 6px 9px; font-size: 11px; font-weight: 650; line-height: 1.2; }
+.resume .resume-item ul { margin-top: 9px; padding-left: 20px; }
+.resume .resume-item ul li { margin-bottom: 6px; line-height: 1.55; }
+.resume .resume-item p a { color: #149ddd; font-weight: 650; }
+
+@media (max-width: 991px) {
+  .about .technical-profile-copy { padding-left: 12px; }
+  .skill-orbit { max-width: 450px; }
+}
+@media (max-width: 767px) {
+  .skill-orbit { width: min(100%, 390px); }
+  .orbit-badge { width: 72px; height: 72px; padding: 5px 3px; gap: 4px; }
+  .orbit-badge i { font-size: 18px; }
+  .orbit-badge span { font-size: 9px; }
+  .orbit-ring-outer { width: 82%; height: 82%; }
+  .orbit-ring-inner { width: 58%; height: 58%; }
+  .orbit-center { width: 43%; }
+  .orbit-react, .orbit-api { right: 2%; }
+  .orbit-vite, .orbit-ml { left: 2%; }
+  .about .technical-profile-copy { padding: 20px 10px 0; }
+  .toolkit-card { padding: 22px; min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-badge, .toolkit-card { transition: none; }
+  .toolkit-card:hover { transform: none; }
+}
+
+
+/* ===== Collapsible desktop sidebar ===== */
+#main { transition: margin-left .32s ease; }
+.desktop-sidebar-toggle {
+  position: fixed;
+  top: 18px;
+  left: 258px;
+  z-index: 10001;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #27364a;
+  border-radius: 8px;
+  background: #111d2c;
+  color: #c3d0df;
+  cursor: pointer;
+  transition: left .32s ease, background .2s ease, color .2s ease;
+}
+.desktop-sidebar-toggle:hover,
+.desktop-sidebar-toggle:focus-visible { background: #149ddd; color: #fff; outline: none; }
+.desktop-sidebar-toggle i { font-size: 17px; line-height: 1; }
+body.sidebar-collapsed #header { width: 82px; padding: 0 8px; }
+body.sidebar-collapsed #main { margin-left: 82px; }
+body.sidebar-collapsed .desktop-sidebar-toggle { left: 57px; }
+body.sidebar-collapsed #header .profile img { width: 48px; border-width: 3px; margin: 58px auto 16px; }
+body.sidebar-collapsed #header .profile h1,
+body.sidebar-collapsed #header .profile .social-links { display: none; }
+body.sidebar-collapsed .nav-menu { padding-top: 20px; }
+body.sidebar-collapsed .nav-menu > ul > li { width: 100%; }
+body.sidebar-collapsed .nav-menu a,
+body.sidebar-collapsed .nav-menu a:focus { justify-content: center; padding: 12px 0; margin: 0 0 8px; }
+body.sidebar-collapsed .nav-menu a span { display: none; }
+body.sidebar-collapsed .nav-menu a i,
+body.sidebar-collapsed .nav-menu a:focus i { padding: 0; margin: 0; font-size: 23px; }
+
+/* Services use the same clean card rhythm as the technical toolkit. */
+.services .section-title p { max-width: 950px; }
+.services-grid .icon-box { min-height: 190px; padding: 6px 8px 18px 0; }
+.services .title { color: #343a40; font-size: 17px; line-height: 1.4; margin-bottom: 12px; }
+.services .description { color: #4f5965; line-height: 1.75; }
+.services-grid .icon-box:hover .title { color: #173f72; }
+
+@media (max-width: 1199px) {
+  .desktop-sidebar-toggle { display: none !important; }
+  body.sidebar-collapsed #header { left: -300px; width: 300px; padding: 0 15px; }
+  body.sidebar-collapsed #main { margin-left: 0; }
+  body.sidebar-collapsed #header .profile img { width: 120px; border-width: 8px; margin: 15px auto; }
+  body.sidebar-collapsed #header .profile h1 { display: block; }
+  body.sidebar-collapsed #header .profile .social-links { display: block; }
+  body.sidebar-collapsed .nav-menu { padding-top: 30px; }
+  body.sidebar-collapsed .nav-menu a,
+  body.sidebar-collapsed .nav-menu a:focus { justify-content: flex-start; padding: 12px 15px; margin-bottom: 8px; }
+  body.sidebar-collapsed .nav-menu a span { display: inline; }
+  body.sidebar-collapsed .nav-menu a i,
+  body.sidebar-collapsed .nav-menu a:focus i { padding-right: 8px; margin-right: 0; font-size: 24px; }
+  body.mobile-nav-active.sidebar-collapsed #header { left: 0; }
+}
+@media (max-width: 767px) {
+  .services-grid .icon-box { min-height: 0; padding-bottom: 12px; }
+  .services .title, .services .description { margin-left: 70px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #main, .desktop-sidebar-toggle, #header { transition: none !important; }
+}
