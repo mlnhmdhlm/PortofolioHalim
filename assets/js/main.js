@@ -97,6 +97,35 @@
   })
 
   /**
+   * Accessible desktop sidebar collapse/expand. Mobile navigation remains an overlay.
+   */
+  const desktopSidebarToggle = select('#desktop-sidebar-toggle')
+  const applyDesktopSidebarState = (collapsed) => {
+    document.body.classList.toggle('sidebar-collapsed', collapsed)
+    if (!desktopSidebarToggle) return
+    const icon = desktopSidebarToggle.querySelector('i')
+    if (icon) {
+      icon.classList.toggle('bi-chevron-left', !collapsed)
+      icon.classList.toggle('bi-chevron-right', collapsed)
+    }
+    desktopSidebarToggle.setAttribute('aria-expanded', String(!collapsed))
+    desktopSidebarToggle.setAttribute('aria-label', collapsed ? 'Expand sidebar' : 'Collapse sidebar')
+    desktopSidebarToggle.setAttribute('title', collapsed ? 'Expand sidebar' : 'Collapse sidebar')
+    try { localStorage.setItem('portfolio-sidebar-collapsed', String(collapsed)) } catch (error) { /* storage may be unavailable */ }
+  }
+
+  if (desktopSidebarToggle) {
+    try {
+      if (window.innerWidth >= 1200 && localStorage.getItem('portfolio-sidebar-collapsed') === 'true') {
+        applyDesktopSidebarState(true)
+      }
+    } catch (error) { /* keep the default expanded state */ }
+    desktopSidebarToggle.addEventListener('click', function () {
+      applyDesktopSidebarState(!document.body.classList.contains('sidebar-collapsed'))
+    })
+  }
+
+  /**
    * Scrool with ofset on links with a class name .scrollto
    */
   on('click', '.scrollto', function(e) {
